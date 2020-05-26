@@ -8,6 +8,13 @@ layout: default
 {% endif %}
 
 <div class="post-header mb2">
+
+  {% if page.featured_image %}
+  <div class="center-cropped" 
+     style="background-image: url('{{ page.featured_image }}');">
+  </div>
+  {% endif %}
+
   <h1>{{ page.title }}</h1>
   <span class="post-meta">{{ page.date | date: site.date_format }}</span><br>
   {% if page.update_date %}

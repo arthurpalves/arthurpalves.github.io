@@ -1,10 +1,10 @@
 # Site settings
-title:       Pixyll
-email:       your_email@example.com
-author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+title:       Arthur Alves
+email:       arthuralves.p@gmail.com
+author:      Arthur Alves
+description: "Yet another tech blog"
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "https://arthuralves.com"
 date_format: "%b %-d, %Y"
 header_pages:
  - about.md
@@ -14,7 +14,7 @@ header_pages:
 google_verification:
 # Use either direct GA implementation or set up GTM account
 # - using both will skew your data (leave blank to not use at all)
-google_analytics:
+google_analytics: UA-167492351-1
 google_tag_manager:
 # Bing services
 bing_verification:
@@ -23,7 +23,7 @@ bing_verification:
 animated:             false
 show_related_posts:   false
 show_post_footers:    false
-show_social_icons:    false
+show_social_icons:    true
 ajaxify_contact_form: false
 enable_mathjax: false
 extended_fonts: false
@@ -47,15 +47,15 @@ facebook_appid:
 facebook_comments_number: 10
 
 # Social icons
-github_username:
+github_username: arthurpalves
 reddit_username:
 bitbucket_username:
 stackoverflow_id:
-twitter_username:
+twitter_username: alvesparthur
 skype_username:
 steam_nickname:
 google_plus_id:
-linkedin_username:
+linkedin_username: arthuralvesp
 angellist_username:
 medium_id:
 bitcoin_url:
@@ -65,12 +65,12 @@ telegram_username:
 vk_id:
 
 # Post sharing icons
-show_sharing_icons: false
+show_sharing_icons: true
 # Change to 'true' to enable individual icons
-share_facebook: false
-share_twitter: false
+share_facebook: true
+share_twitter: true
 share_googleplus: false
-share_linkedin: false
+share_linkedin: true
 share_digg: false
 share_tumblr: false
 share_reddit: false

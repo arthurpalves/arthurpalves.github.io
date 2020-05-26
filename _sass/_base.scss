@@ -32,3 +32,16 @@ body {
      -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
+
+#floated {
+    float: left;
+    padding-right: 40px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+@media screen and (min-width: $viewport-medium) {
+	#floated {
+		width: 40%;
+	}
+}

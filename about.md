@@ -1,94 +1,27 @@
 ---
 layout: page
-title: About Pixyll
+title: About Me
 permalink: /about/
 tags: about
+picture: ../images/me.png
 ---
 
-This Jekyll theme was crafted with <3 by [John Otander](http://johnotander.com)
-([@4lpine](https://twitter.com/4lpine)).
+Hi, there! I'm Arthur Alves.
+I live in The Netherlands 🇳🇱, originally from Brazil 🇧🇷
 
-Checkout the [Github repository](https://github.com/johnotander/pixyll) to download it,
-request a feature, report a bug, or contribute. It's free, and open source
-([MIT](http://opensource.org/licenses/MIT)).
+I could describe myself as Mobile and macOS Engineer with a strong passion for automation, tooling, open source, FRP and other cool stuff you hear nowadays. This space is especially for my projects and software development.
 
-Thanks to the following:
+Besides coding I do love football ⚽, video games 🎮 and many other things, so follow me on social media if you'd like to connect.
 
-* [BASSCSS](http://basscss.com)
-* [Jekyll](http://jekyllrb.com)
-* [Refills](http://refills.bourbon.io/)
-* [Type Scale](http://type-scale.com/)
+## Open Source
 
-List of contributors:
+I've always wanted to be more active in the open source community, but you know, the old `"I don't have time for it right now"` excuse kept me away for too long. Not anymore! Be sure you follow me on [Github](https://github.com/arthurpalves) 🚀
 
-- Aaron S. Hawley
-- Adam Menges
-- Alex Claman
-- Alex Johnson
-- Alex Touchet
-- Allister Antosik
-- Amin Bandali
-- Anders Nissen
-- Andrea Margiovanni
-- Andreas Niedermair
-- Andrzej Ośmiałowski
-- Anuj More
-- Arvind Chembarpu
-- Assaf Gelber
-- Barry vd. Heuvel
-- Bartek Krzemień
-- Benjamin Sinkula
-- Bennett Rogers
-- Brian Gaid
-- Brian Hurst
-- Chee Yeo
-- Cody Chan
-- Cristian Henrique
-- David Ernst
-- David Moodie
-- Donate Altenburger
-- Eddie Schoute
-- Fernando Mantoan
-- Gurchet Rai
-- Harish Narayanan
-- Jack Platten
-- Jehan Tremback
-- Jiaxi Gu (Isaac)
-- John Otander
-- Jordan Danielewski
-- Josh Buxton
-- Kirill Kulikov
-- Kyle Maxwell
-- Marta Sztybor
-- Martin Wagner
-- Matthew Graybosch
-- Maxim Tsoy
-- Mete Balci
-- Mike Lloyd
-- Mikhail Grachev
-- mindwind
-- Nick Rakochy
-- Nikolay Georgiev
-- Noel Bautista
-- Oliver Hamlet
-- Onur (e0i)
-- Praveer Gupta
-- Rassol (Karmeye)
-- Renato Fialho
-- Ricky Han
-- Roberto Pesando
-- Ryan Jacobs
-- Scott Martin
-- Selim Eren Bekçe
-- Shruti Rijhwani
-- Steef Hegeman
-- Tehmasp Chaudhri
-- Thomas Galvin
-- Timothy Gu
-- Tom Kraak
-- Vishnu Ks
-- Vladislav Arbatov
-- Wilfred Hughes
-- Yaroslav Yadrishnikov
-- Yee Chie Tu
-- Yeou Chien
+## Gaming Industry
+
+I'm venturing myself in game development, slowly but surely building a story driven RPG for console.
+It will take years. Check that work on [Redlslash](https://www.reslash.co).
+
+## What I do for a living?
+
+Currently Mobile Tech Lead at this super cool fintech, 👉 [Backbase](https://www.backbase.com)
