@@ -27,3 +27,15 @@ footer {
   padding: $footer-padding;
   text-align: center;
 }
+
+@media (prefers-color-scheme: dark) {
+  footer {
+    background-color: $footer-bg-color-dark;
+    border-top: $footer-border-top-dark;
+    color: $footer-color-dark;
+    font-size: $footer-font-size;
+    font-weight: $footer-font-weight;
+    padding: $footer-padding;
+    text-align: center;
+  }
+}

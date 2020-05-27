@@ -55,3 +55,27 @@
 .site-header .site-nav {
   text-align: center;
 }
+
+@media (prefers-color-scheme: dark) {
+  .site-header a {
+    color: $header-color-dark;
+    font-size: $h3;
+    font-weight: $header-font-weight;
+    background-image: none;
+  }
+
+  .site-header nav a {
+    color: $nav-color-dark;
+  }
+
+  .site-header nav a:hover,
+  .site-header nav a:focus,
+  .site-header nav a:active,
+  .site-header nav a.nav-active:hover,
+  .site-header nav a.nav-active:focus,
+  .site-header nav a.nav-active:active {
+    color: $nav-link-color-dark;
+    opacity: 1;
+    border-bottom: $nav-link-border-bottom;
+  }
+}

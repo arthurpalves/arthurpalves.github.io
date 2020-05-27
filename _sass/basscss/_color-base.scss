@@ -1,28 +1,57 @@
 /* Basscss Color Base */
 
-body {
-  color: $dark-gray;
-  background-color: white;
+@media (prefers-color-scheme: light) {
+  body {
+    color: $dark-gray;
+    background-color: white;
+  }
+
+  a {
+    color: $blue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  pre,
+  code {
+    background-color: $lighter-gray;
+    border-radius: $border-radius;
+  }
+
+  hr {
+    border: 0;
+    border-bottom-style: solid;
+    border-bottom-width: $border-width;
+    border-bottom-color: $border-color;
+  }
+
 }
 
-a {
-  color: $blue;
-  text-decoration: none;
-}
+@media (prefers-color-scheme: dark) {
 
-a:hover {
-  text-decoration: underline;
-}
+  a {
+    color: $yellow;
+    text-decoration: none;
+  }
 
-pre,
-code {
-  background-color: $lighter-gray;
-  border-radius: $border-radius;
-}
+  pre,
+  code {
+    background-color: $dark-gray;//$lighter-gray;
+    border-radius: $border-radius;
+  }
 
-hr {
-  border: 0;
-  border-bottom-style: solid;
-  border-bottom-width: $border-width;
-  border-bottom-color: $border-color;
+  hr {
+    border: 0;
+    border-bottom-style: solid;
+    border-bottom-width: $border-width;
+    border-bottom-color: $border-color-dark;
+  }
+
+  body {
+    color: white;
+    background-color: black;
+  }
 }

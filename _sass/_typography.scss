@@ -7,9 +7,18 @@ abbr {
   cursor: help;
 }
 
-p {
-  color: #333;
-  line-height: 1.5;
+@media (prefers-color-scheme: light) {
+  p {
+	color: #333;
+	line-height: 1.5;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  p {
+	color: #FFF;
+	line-height: 1.5;
+  }
 }
 
 small,
