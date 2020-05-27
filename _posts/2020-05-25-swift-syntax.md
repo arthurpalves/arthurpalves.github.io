@@ -54,16 +54,7 @@ With [CoherentSwift](https://github.com/arthurpalves/coherent-swift) I don't wan
 
 Similar to Rewriter and Factory, we have **SyntaxVisitor**. It allow us to go through `TokenSyntax` (a.k.a walk all nodes of the tree), and by overridding it's `visit(_:)` methods we can parse/analyse given `TokenSyntax`. The visit method's return a `SyntaxVisitorContinueKind`, an enumeration:
 
-```swift
-public enum SyntaxVisitorContinueKind {
-
-	/// The visitor should visit the descendents of the current node.
-	case visitChildren
-
-	/// The visitor should avoid visiting the descendents of the current node.
-	case skipChildren
-}
-``` 
+<script src="https://gist.github.com/arthurpalves/7c709b162523650c4c8b68195c26b193.js"></script>
 
 See this basically as a `Bool`, for every visit, should it move forward and also pay a visit to it's children or should it stop right now?
 
@@ -78,14 +69,7 @@ This couldn't be more generic, it goes through every node. If you do want to par
 However, we do have `visit(_:)` methods for specific `TokenKind` too.
 If we want to parse entire classes:
 
-```swift
-/// Visiting `ClassDeclSyntax` specifically.
-///   - Parameter node: the node we are visiting.
-///   - Returns: how should we continue visiting.
-open func visit(_ node: ClassDeclSyntax) -> SyntaxVisitorContinueKind {
-	return .visitChildren
-}
-```
+<script src="https://gist.github.com/arthurpalves/54785868df7d5e50c77939310c56f10e.js"></script>
 
 This give us easy access to the class syntax, with immediate properties such as `identifier`, `attributes`, `modifiers`, `members` and more.
 
@@ -95,10 +79,7 @@ But remember, all this is abstract, they will have more and more abstract syntax
 
 I find it useful to override multiple `visit(_:)` methods, as I want to process them in complete different ways, i.e.:
 
-```swift
-override func visit(_ node: ClassDeclSyntax) -> SyntaxVisitorContinueKind
-override func visit(_ node: ExtensionDeclSyntax) -> SyntaxVisitorContinueKind
-```
+<script src="https://gist.github.com/arthurpalves/4f1e3907355631bb034fa3d74070901f.js"></script>
 
 I also want to keep a record of this tree so that I can measure the cohesion of this code, for that I want to know specific things:
 
@@ -137,11 +118,7 @@ If you've seen enough of `visit(_:)`, how about `visitPost(_:)`?
 You read it right, for every *visit& there is a *visitPost*. A post is called after a visit has been paid to the given syntax and all its descendants, it therefore doesn't return any value.
 It's very useful for post processing.
 
-```swift
-/// The function called after visiting `ClassDeclSyntax` and its descendents.
-///   - node: the node we just finished visiting.
-open func visitPost(_ node: ClassDeclSyntax) {}
-```
+<script src="https://gist.github.com/arthurpalves/56fb7427f85260ece995850a4af1d294.js"></script>
 
 ## Conclusion
 
