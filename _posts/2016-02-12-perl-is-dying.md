@@ -5,7 +5,7 @@ alternative_title: #!/usr/bin/perl
 date:       2016-02-12
 summary:    You must’ve heard of Perl… Well, it's dying!
 tags: 		development perl programming
-categories: throughts
+categories: thoughts
 featured_image: /images/posts/02_old_perl.png
 ---
 

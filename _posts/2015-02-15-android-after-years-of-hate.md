@@ -4,7 +4,7 @@ title:      Android - After Years of Hate
 date:       2015-02-15
 summary:    I've hated on Android for years, until one day...
 tags:		development android mobile
-categories: throughts
+categories: thoughts
 featured_image: /images/posts/01_android_after_years.jpeg
 ---
 
