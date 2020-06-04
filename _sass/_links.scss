@@ -62,7 +62,7 @@ button,
       rgba($link-color,.8) 18%,
       rgba(0,0,0,0) 17%
     );
-    text-shadow: $link-shadow-color-dark 1px 0px 0px, $link-shadow-color-dark -1px 0px 0px;
+    text-shadow: $link-shadow-color-dark 0px 0px 0px, $link-shadow-color-dark -0px 0px 0px;
   }
 
   a:hover,
@@ -77,7 +77,7 @@ button,
       rgba($link-hover-color,.8) 17%,
       rgba(0,0,0,0) 17%
     );
-    text-shadow: $link-shadow-color-dark 1px 0px 0px, $link-shadow-color-dark -1px 0px 0px;
+    text-shadow: $link-shadow-color-dark 0px 0px 0px, $link-shadow-color-dark -0px 0px 0px;
   }
 
   .button:hover,
