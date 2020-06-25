@@ -32,19 +32,10 @@ Right there on your home screen you have meaningful information from your apps w
 
 We'll assume my banking app has an open API which provides my list of accounts - in banking terms, products - in the following format. Where `type` is an enumeration of values `"main"` and `"secondary"`.
 
-```json
-    [{
-      "balance": "4675",
-      "IBAN": "NL27AAAA0352734310",
-      "currency": "EUR",
-      "id": "8ab78900f99013a",
-      "name": "Main Account"
-      "type": "main"
-    }]
-
-```
+<script src="https://gist.github.com/arthurpalves/873f10882d710e62d14562ef24963940.js"></script>
 
 Considering we can only have one main account, our widget will show the following details of this account:
+
 ```
 	Name
 	CurrencySign Balance
@@ -79,84 +70,31 @@ Let's first go through every component in order to understand what they do and w
 
 #### TimelineEntry
 
-```swift
-struct SimpleEntry: TimelineEntry {
-  public let date: Date
-}
-```
+<script src="https://gist.github.com/arthurpalves/db94223877075ee8fa79fa90bffa3161.js"></script>
 
 A widget receives information in time. This information is passed via a timeline entry, which by default needs a date where WidgetKit will render the widget.
 
 Our Widget needs more than that. We'll create another type of entry which contains our main account (product)
 
-```swift
-struct AccountEntry: TimelineEntry {
-  public let date: Date
-  public let product: Product
-}
-```
+<script src="https://gist.github.com/arthurpalves/db994081b8ca84d0aa91590b3038529f.js"></script>
 
 Where `Product` is a simple struct shared from our main target
 
-```swift
-enum ProductType {
-  case main, secondary
-}
-
-struct Product: Identifiable {
-  let id: String
-  let name: String
-  let balance: Double
-  let iban: String
-  let type: ProductType
-}
-```
+<script src="https://gist.github.com/arthurpalves/29dcb64ef89512baf6d578134db95174.js"></script>
 
 #### TimelineProvider
 
 Now that we have an entry, we need a way to provide this to the widget through time. The timeline provider is responsible for this.
 
-```swift
-struct Provider: TimelineProvider {
-  public typealias Entry = SimpleEntry
-
-  public func snapshot(with context: Context, completion: @escaping (SimpleEntry) -> ()) {
-    /* implementation */
-  }
-
-  public func timeline(with context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-    /* implementation */
-  }
-}
-```
+<script src="https://gist.github.com/arthurpalves/1993f908023a6d50a297efc01eed0cb0.js"></script>
 
 Here you notice it contains two methods, `snapshot` and `timeline`. The first is used to configure/render the widget in transient circumstances, think of it as a demonstration with mock data. We'll therefore implement it like so:
 
-```swift
-public func snapshot(with context: Context, completion: @escaping (AccountEntry) -> ()) {
-  let previewProduct = Product(
-    id: "123a67cf",
-    title: "Main Account",
-    amount: 280.25,
-    iban: "NL27AAA0726252510"
-  )
-  let entry = AccountEntry(date: Date(), product: previewProduct)
-  completion(entry)
-}
-```
+<script src="https://gist.github.com/arthurpalves/5e9f912d224cee638eea974c303c0a89.js"></script>
 
 `timeline` is the method used for the real implementation. It will return on completion an array of your entries to be rendered at a given time. WidgetKit will be able to request multiple timelines, so it's not necessary to return multiple values in this array if your content is dynamically fetched.
 
-```swift
-public func timeline(with context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-  var entries: [AccountEntry] = []
-
-  /* ... */
-
-  let timeline = Timeline(entries: entries, policy: .atEnd)
-  completion(timeline)
-}
-```
+<script src="https://gist.github.com/arthurpalves/3d4054897532f7148748c802cd41cbe4.js"></script>
 
 One important thing in the code above is the `policy` expected when initializing a `Timeline`. From the documentation we see: `The policy that determines the earliest date and time WidgetKit requests a new timeline from a timeline provider`. It's a reload policy which can be:
 
@@ -168,39 +106,15 @@ Nowing this and since we retrieve a list of accounts and its data for the given 
 
 We'll use the current date for the current entry and a future date - 10 minutes apart - where the next timeline will be requested
 
-```swift
-let currentDate = Date()
-let futureDate = Calendar.current.date(byAdding: .minute, value: 10, to: currentDate)!
-```
+<script src="https://gist.github.com/arthurpalves/c4d57a1284b28ee47d012174b06c5b80.js"></script>
 
 We'll have to fetch new data in order to create our entry, since a `Product` is required. Having our entry, we can create a timeline and complete our implementation
 
-```swift
-viewModel.fetchProducts() { products in
-  guard let mainProduct = products.first(where: { $0.type == .main }) else { return }
-
-  let entry = AccountEntry(date: currentDate, product: mainProduct)
-  let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-  completion(timeline)
-}
-```
+<script src="https://gist.github.com/arthurpalves/6c244640c2e9def6e6060f76bb235eb0.js"></script>
 
 Our entire `timeline` method looks like:
 
-```swift
-public func timeline(with context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-  let currentDate = Date()
-  let futureDate = Calendar.current.date(byAdding: .minute, value: 10, to: currentDate)!
-
-  viewModel.fetchProducts() { products in
-    guard let mainProduct = products.first(where: { $0.type == .main }) else { return }
-
-    let entry = AccountEntry(date: currentDate, product: mainProduct)
-    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-    completion(timeline)
-  }
-}
-```
+<script src="https://gist.github.com/arthurpalves/022e2b1d9e18c568cf3b681afc53ae00.js"></script>
 
 Our widget will receive a new timeline - containing 1 entry - every 10 minutes.
 
@@ -208,20 +122,7 @@ Our widget will receive a new timeline - containing 1 entry - every 10 minutes.
 
 The widget is very straight forward. We'll have to configure minor details, such as display name and description.
 
-```swift
-@main
-struct MainAccount: Widget {
-  private let kind: String = "MainAccount"
-
-  public var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: Provider(), placeholder: PlaceholderView()) { entry in
-      MainAccountEntryView(entry: entry)
-    }
-    .configurationDisplayName("Main Account")
-    .description("See information about your main account.")
-  }
-}
-```
+<script src="https://gist.github.com/arthurpalves/8c1682877a19d4364ee9c0917de03266.js"></script>
 
 Note that this Widget uses a `StaticConfiguration`, as we don't want to allow users to configure/edit it. For a configurable widget, there is `IntentConfiguration`.
 
@@ -229,57 +130,19 @@ Note that this Widget uses a `StaticConfiguration`, as we don't want to allow us
 
 As you might have seen, we have a `PlaceholderView()` and a `MainAccountEntryView`, that this widget uses. Both are pure SwiftUI views already provided during setup.
 
-```swift
-struct PlaceholderView : View {
-  var body: some View {
-    Text("Placeholder View")
-  }
-}
-
-struct MainAccountEntryView : View {
-  var entry: Provider.Entry
-
-  var body: some View {
-    Text(entry.date, style: .time)
-  }
-}
-```
+<script src="https://gist.github.com/arthurpalves/ef092f999ef088f5745bfc379f29d6fe.js"></script>
 
 `PlaceholderView` - if the name isn't clear enough - is used when there is no timeline/entry to render. You can use it to display a generic message.
 
 `MainAccountEntryView` is used to render your entries, here you want to display the information needed. It contains an `entry` property which, based on our Provider, contain a `Product`. We could therefore use product's information. Example:
 
-```swift
-struct MainAccountEntryView : View {
-  var entry: Provider.Entry
-
-  var body: some View {
-    VStack(alignment: .leading, spacing: 2) {
-      Text(entry.product.name)
-      Text(entry.product.iban)
-      Text(entry.product.formattedAmount)
-    })
-  }
-}
-```
+<script src="https://gist.github.com/arthurpalves/198d8879002d1c5e677d290766a3fd15.js"></script>
 
 #### Previews
 
 As for any other SwiftUI view, we can also preview them in Xcode Canvas. We create a `PreviewProvider` to show multiple previews with a `Group`, one for our placeholder and another for our entry view.
 
-```swift
-struct Previews: PreviewProvider {
-  static var previews: some View {
-    Group {
-      MainAccountEntryView(entry: previewEntry)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-            
-      PlaceholderView()
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
-  }
-}
-```
+<script src="https://gist.github.com/arthurpalves/92b90dc8d77e1e6c28b68c58fac8a448.js"></script>
 
 You can potentially preview multiple `MainAccountEntryView` using different preview contexts, for instance, for the different widget sizes, `.systemSmall`, `.systemMedium` and `.systemLarge`.
 
@@ -289,43 +152,7 @@ You can potentially preview multiple `MainAccountEntryView` using different prev
 
 You have the freedom - and restrictions 😅 - of SwiftUI to build your placeholder and entry views. Therefore, the focus here isn't to go in depth there, but this is what I've used for the entry view:
 
-```swift
-ZStack(alignment: .topLeading) {
-  RoundedRectangle(cornerRadius: 0, style: .continuous)
-    .fill(Color("widgetBackgroundColor"))
-
-  HStack(alignment: .center, spacing: 8) {
-    RoundedRectangle(cornerRadius: 3, style: .continuous)
-      .fill(LinearGradient(
-          gradient: .init(colors: [.blue, .green]),
-          startPoint: .init(x: 0, y: 0),
-          endPoint: .init(x: 1, y: 1)
-      ))
-      .frame(width: 6, height: 120)
-      .padding(.leading, -6)
-
-    VStack(alignment: .leading, spacing: 2) {
-      Text(entry.product.name)
-        .bold()
-        .font(Font.system(size: 14))
-      Text("\(entry.product.formattedAmount)")
-        .bold()
-        .lineLimit(1)
-        .font(Font.system(size: 22))
-      Spacer()
-      Text("Last checked at")
-        .font(.footnote)
-      Text(entry.date, style: .time)
-        .font(.footnote)
-      Spacer()
-      Image(systemName: "creditcard.fill")
-        .padding(.bottom, 4)
-    }
-  }
-  .padding(.all, 16)
-  .foregroundColor(Color("widgetBackgroundColor"))
-}
-```
+<script src="https://gist.github.com/arthurpalves/8e68e9af101b2737516a87655e747fed.js"></script>
 
 The color sets `widgetBackgroundColor` and `widgetBackgroundColor` have been added to the Assets and support dark mode 🌙
 
@@ -334,22 +161,7 @@ The color sets `widgetBackgroundColor` and `widgetBackgroundColor` have been add
 Our widget is now ready in all 3 available sizes. What if you want to change that?
 It's fairly easy with `supportedFamilies`. Let's add that to our widget:
 
-
-```swift
-@main
-struct MainAccount: Widget {
-  private let kind: String = "MainAccount"
-
-  public var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: Provider(), placeholder: PlaceholderView()) { entry in
-      MainAccountEntryView(entry: entry)
-    }
-    .configurationDisplayName("Main Account")
-    .description("See information about your main account.")
-    .supportedFamilies([.systemSmall, .systemMedium])
-  }
-}
-```
+<script src="https://gist.github.com/arthurpalves/063658004a8d04e5a7acfc8124fa2d1f.js"></script>
 
 
 #### Our widget in action
