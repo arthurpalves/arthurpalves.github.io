@@ -14,7 +14,7 @@ featured_image: /images/posts/04_ios_widget.png
 
 ## Why is this a big deal for us?
 
-Right there on your home screen you have meaningul information from your apps without even opening them. It's meant to save you time and extend your experience. It's an extension of your application.
+Right there on your home screen you have meaningful information from your apps without even opening them. It's meant to save you time and extend your experience. It's an extension of your application.
 
 ![Widgets](/images/posts/04_ios_widget_example.png)
 
@@ -359,4 +359,6 @@ struct MainAccount: Widget {
 ## Conclusion
 
 Widgets in the home screen is a powerful feature of iOS 14. We've seen how easy it is to create one and improve the user experience of our users. An addition to a static widget is to make it configurable - say, if I'd allow the users to select which account they want to see instead of always the main account, this is possible with the power of intents and an `IntentConfiguration`, which I'll try to cover later.
+
+![widget](/images/posts/04_ios_widget.png)
 
