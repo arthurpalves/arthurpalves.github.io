@@ -99,10 +99,10 @@ Here you notice it contains two methods, `snapshot` and `timeline`. The first is
 One important thing in the code above is the `policy` expected when initializing a `Timeline`. From the documentation we see: `The policy that determines the earliest date and time WidgetKit requests a new timeline from a timeline provider`. It's a reload policy which can be:
 
 * `atEnd` - Specifies that WidgetKit requests a new timeline after the last date in a timeline passes
-* `never` - Specifies that WidgetKit shuold never request a new timeline. As an option, the application can still prompt WidgetKit when new timelines are available
+* `never` - Specifies that WidgetKit should never request a new timeline. As an option, the application can still prompt WidgetKit when new timelines are available
 * `after(_ date: Date)` - Pre defines a future date (from the last date in a timeline) that WidgetKit shall request a new one.
 
-Nowing this and since we retrieve a list of accounts and its data for the given moment, our timeline will only return one entry. We'll make use of policy `after(_ date: Date)` to specify how many minutes after rendering we shall request a new timeline, therefore making a new request to fetch our data.
+Knowing this and since we retrieve a list of accounts and its data for the given moment, our timeline will only return one entry. We'll make use of policy `after(_ date: Date)` to specify how many minutes after rendering we shall request a new timeline, therefore making a new request to fetch our data.
 
 We'll use the current date for the current entry and a future date - 10 minutes apart - where the next timeline will be requested
 
