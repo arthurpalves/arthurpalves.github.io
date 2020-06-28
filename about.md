@@ -20,7 +20,7 @@ I've always wanted to be more active in the open source community, but you know,
 ## Gaming Industry
 
 I'm venturing myself in game development, slowly but surely building a story driven RPG for console.
-It will take years. Check that work on [Redlslash](https://www.reslash.co).
+It will take years. Check that work on [Redslash](https://www.redslash.co).
 
 ## What I do for a living?
 
