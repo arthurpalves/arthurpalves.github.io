@@ -12,6 +12,7 @@ I live in The Netherlands 🇳🇱, originally from Brazil 🇧🇷
 I could describe myself as Mobile and macOS Engineer with a strong passion for automation, tooling, open source, FRP and other cool stuff you hear nowadays. This space is especially for my projects and software development.
 
 Besides coding I do love football ⚽, video games 🎮 and many other things, so follow me on social media if you'd like to connect.
+Recently I've been really passionate about film/instant photography, you can see [Arthur on Film](/on-film).
 
 ## Open Source
 
